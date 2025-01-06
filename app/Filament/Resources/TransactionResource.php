@@ -45,7 +45,12 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('date')
+                    ->date('d-m-Y')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('type')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
