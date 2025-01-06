@@ -27,8 +27,8 @@ class TransactionOverview extends BaseWidget
         $expense = number_format($this->getPageTableQuery()->where('type', 'expense')->sum('amount'), 2);
         return [
             Stat::make('Total Transactions', $this->getPageTableQuery()->count()),
-            Stat::make('Total Income Amount', '$ ' . $income),
-            Stat::make('Total Expense Amount', '$ ' . $expense),
+            Stat::make('Total Income Amount', '₹ ' . $income),
+            Stat::make('Total Expense Amount', '₹ ' . $expense),
             // Stat::make('Average time on page', '3:12'),
         ];
     }
