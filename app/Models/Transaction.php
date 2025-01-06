@@ -9,7 +9,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'amount', 'description'];
+    protected $fillable = ['type', 'amount', 'description', 'date'];
 
     public function isIncome(): bool
     {
