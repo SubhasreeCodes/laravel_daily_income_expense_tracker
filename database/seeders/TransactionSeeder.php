@@ -16,7 +16,7 @@ class TransactionSeeder extends Seeder
         // Seed 10 transactions
         for ($i = 0; $i <= 5; $i++) {
             $transaction = new Transaction();
-            $transaction->type = $faker->randomElement(['income', 'expense']);
+            $transaction->type = $faker->randomElement(['INCOME', 'EXPENSE']);
             $transaction->amount = $faker->numberBetween(50, 1000);
             $transaction->description = $faker->sentence;
             $transaction->date = $faker->dateTimeThisYear();
