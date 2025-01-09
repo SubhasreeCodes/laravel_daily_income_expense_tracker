@@ -3,24 +3,55 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
 use App\Models\Transaction;
-use Faker\Factory as Faker;
 
 class TransactionSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
+        // Static data for transactions
+        $transactions = [
+            [
+                'type' => 'INCOME',
+                'amount' => 500,
+                'description' => 'Salary payment',
+                'date' => now(),
+            ],
+            [
+                'type' => 'EXPENSE',
+                'amount' => 200,
+                'description' => 'Grocery shopping',
+                'date' => now()->subDays(1),
+            ],
+            [
+                'type' => 'INCOME',
+                'amount' => 1200,
+                'description' => 'Freelance work',
+                'date' => now()->subDays(2),
+            ],
+            [
+                'type' => 'EXPENSE',
+                'amount' => 100,
+                'description' => 'Restaurant bill',
+                'date' => now()->subDays(3),
+            ],
+            [
+                'type' => 'INCOME',
+                'amount' => 300,
+                'description' => 'Gift received',
+                'date' => now()->subDays(4),
+            ],
+            [
+                'type' => 'EXPENSE',
+                'amount' => 50,
+                'description' => 'Transport fee',
+                'date' => now()->subDays(5),
+            ],
+        ];
 
-        // Seed 10 transactions
-        for ($i = 0; $i <= 5; $i++) {
-            $transaction = new Transaction();
-            $transaction->type = $faker->randomElement(['INCOME', 'EXPENSE']);
-            $transaction->amount = $faker->numberBetween(50, 1000);
-            $transaction->description = $faker->sentence;
-            $transaction->date = $faker->dateTimeThisYear();
-            $transaction->save();
+        // Create transactions in the database
+        foreach ($transactions as $transactionData) {
+            Transaction::create($transactionData);
         }
     }
 }
