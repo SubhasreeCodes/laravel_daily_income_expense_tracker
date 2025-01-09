@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use App\Enums\TransactionType;  // Import the Transaction Enums file here. 
+
 class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
@@ -49,6 +51,11 @@ class TransactionResource extends Resource
                     ->date('d-m-Y')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        TransactionType::INCOME->value => 'success',
+                        TransactionType::EXPENSE->value => 'danger'
+                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
